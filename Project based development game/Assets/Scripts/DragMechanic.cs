@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DragMechanic : MonoBehaviour
 {
+    ToolOneTest test;
+
     bool dragging = false;
 
     public Vector3 offset;
@@ -16,6 +18,7 @@ public class DragMechanic : MonoBehaviour
     {
         startPosition = transform.position; //Store the position the tool is at
         RB = GetComponent<Rigidbody2D>();
+        test = GetComponent<ToolOneTest>();
     }
 
     // Update is called once per frame
@@ -41,5 +44,6 @@ public class DragMechanic : MonoBehaviour
         dragging = false; //stop dragging
         transform.position = startPosition; //brings the tool back to its original spot
         transform.SetParent(toolBar.transform); //makes the tool go back to the toolbar
+        test.ResetTestResults(); // makes sure the results dont show when not dragging
     }
 }
