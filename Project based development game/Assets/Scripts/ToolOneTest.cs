@@ -5,11 +5,13 @@ public class ToolOneTest : MonoBehaviour
     public bool stove;
     public bool stoveAirVent;
     public bool exitVent;
+    public bool gotResults;
 
     public GameObject goodResult;
     public GameObject badResult;
 
     public float testTimer = 0;
+    public float resetTimer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +42,16 @@ public class ToolOneTest : MonoBehaviour
         if (exitVent == true && testTimer > 3)
         {
             BadTestResults();
+        }
+
+        if(stove == false || (stoveAirVent == false) || (exitVent == false) && gotResults == true)
+        {
+            resetTimer += Time.deltaTime;
+        }
+        
+        if (resetTimer > 1)
+        {
+            ResetTestResults();
         }
 
     }
@@ -79,14 +91,18 @@ public class ToolOneTest : MonoBehaviour
     public void GoodTestResults()
     {
         goodResult.SetActive(true);
+        gotResults = true;
     }
     public void BadTestResults()
     {
         badResult.SetActive(true);
+        gotResults = true;
     }
     public void ResetTestResults()
     {
         goodResult.SetActive(false);
         badResult.SetActive(false);
+        gotResults = false;
+        resetTimer = 0;
     }
 }
