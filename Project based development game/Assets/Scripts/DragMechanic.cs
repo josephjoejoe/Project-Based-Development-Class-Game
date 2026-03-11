@@ -7,6 +7,7 @@ public class DragMechanic : MonoBehaviour
     public Vector3 offset;
 
     public GameObject toolBar;
+    public GameObject canvas;
     public Rigidbody2D RB;
 
     public Vector3 startPosition;
@@ -32,7 +33,7 @@ public class DragMechanic : MonoBehaviour
     {   //Record the difference between the objects centre, and the clicked point on the camera plane
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragging = true;
-        transform.SetParent(null); //makes the tool its own parent  
+        transform.SetParent(canvas.transform); //put the tool in the canvas  
     }
 
     private void OnMouseUp()
