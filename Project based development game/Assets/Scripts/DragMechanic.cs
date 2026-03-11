@@ -3,13 +3,18 @@ using UnityEngine;
 public class DragMechanic : MonoBehaviour
 {
     bool dragging = false;
+
     public Vector3 offset;
+
     public GameObject toolBar;
+    public Rigidbody2D RB;
+
     public Vector3 startPosition;
 
     private void Start()
     {
         startPosition = transform.position; //Store the position the tool is at
+        RB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -17,7 +22,8 @@ public class DragMechanic : MonoBehaviour
     {
         if(dragging == true)
         {   //Move object, taking into account original offest
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            RB.MovePosition(mousePos); // be able to move the object with physics 
             toolBar.SetActive(false);
         }
     }
@@ -32,7 +38,6 @@ public class DragMechanic : MonoBehaviour
     private void OnMouseUp()
     {
         dragging = false; //stop dragging
-
         transform.position = startPosition; //brings the tool back to its original spot
         transform.SetParent(toolBar.transform); //makes the tool go back to the toolbar
     }
