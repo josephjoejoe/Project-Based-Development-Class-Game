@@ -1,0 +1,1 @@
+//this is to offer notes or how to do certain mechanics you may find useful
