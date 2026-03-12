@@ -22,16 +22,16 @@ public class ToolOneTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(stove == true || (stoveAirVent == true) || (exitVent == true))
+        if(stove == true || (stoveAirVent == true) || (exitVent == true)) // the tool starts to test the appliance
         {
             testTimer += Time.deltaTime;
         }
         else
         {
-            testTimer = 0;
+            testTimer = 0; // if the tool is not on the appliance the timer get set back to zero
         }
 
-        if (stove == true && testTimer > 3)
+        if (stove == true && testTimer > 3) // you get the results after 3 second on staying on the appliance
         {
             GoodTestResults();
         }
@@ -44,12 +44,12 @@ public class ToolOneTest : MonoBehaviour
             BadTestResults();
         }
 
-        if(stove == false || (stoveAirVent == false) || (exitVent == false) && gotResults == true)
+        if(stove == false || (stoveAirVent == false) || (exitVent == false) && gotResults == true) // this helps the results show longer after you drag the tool away from the appiance
         {
-            resetTimer += Time.deltaTime;
+            resetTimer += Time.deltaTime; 
         }
         
-        if (resetTimer > 1)
+        if (resetTimer > 1) // when time is over 1 second the results will disapear
         {
             ResetTestResults();
         }
@@ -58,7 +58,7 @@ public class ToolOneTest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Stove"))
+        if (collision.gameObject.tag.Equals("Stove")) // checks to see if the tool on the stove
         {
             stove = true;
         }
@@ -74,7 +74,7 @@ public class ToolOneTest : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Stove"))
+        if (collision.CompareTag("Stove")) // checks to see if the tool isnt on the stove
         {
             stove = false;
         }
@@ -88,17 +88,17 @@ public class ToolOneTest : MonoBehaviour
         }
     }
 
-    public void GoodTestResults()
+    public void GoodTestResults() // will make the result appear as good
     {
         goodResult.SetActive(true);
         gotResults = true;
     }
-    public void BadTestResults()
+    public void BadTestResults() // will make the result appear as bad
     {
         badResult.SetActive(true);
         gotResults = true;
     }
-    public void ResetTestResults()
+    public void ResetTestResults() // will make the result go away
     {
         goodResult.SetActive(false);
         badResult.SetActive(false);

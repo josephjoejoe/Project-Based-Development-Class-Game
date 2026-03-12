@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DragMechanic : MonoBehaviour
 {
-    ToolOneTest test;
+    ToolOneTest test; // reference
 
     bool dragging = false;
 
@@ -18,7 +18,7 @@ public class DragMechanic : MonoBehaviour
     {
         startPosition = transform.position; //Store the position the tool is at
         RB = GetComponent<Rigidbody2D>();
-        test = GetComponent<ToolOneTest>();
+        test = GetComponent<ToolOneTest>(); // reference
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class DragMechanic : MonoBehaviour
         {   //Move object, taking into account original offest
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
             RB.MovePosition(mousePos); // be able to move the object with physics 
-            toolBar.SetActive(false);
+            toolBar.SetActive(false); // makes the tool bar go away when dragging tool
         }
     }
 
