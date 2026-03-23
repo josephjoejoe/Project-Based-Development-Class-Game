@@ -3,7 +3,7 @@ using UnityEngine;
 public class PipeDragMechanic : MonoBehaviour
 {
 
-    bool dragging = false;
+    public bool dragging = false;
 
     public Vector3 offset;
 

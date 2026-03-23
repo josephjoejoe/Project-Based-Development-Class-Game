@@ -2,32 +2,54 @@ using UnityEngine;
 
 public class PipeConnectors : MonoBehaviour
 {
-    public PipeConnectors connectedTo;
-    public float snapDistance = 0.5f;
+    public GameObject[] tiles; // store gameobjects that have the tag Tile
+    public float snapDistance = 1; // how close the pipe needs to be to snap
+    public PipeDragMechanic PDM;
 
+    public bool onPipeBar = true; // check if the pipe is on the pipe bar
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void Start()
     {
-        PipeConnectors otherConnector = other.GetComponent<PipeConnectors>();
+        tiles = GameObject.FindGameObjectsWithTag("Tile"); // find gameobjects with Tile tag
+        PDM = GetComponent<PipeDragMechanic>();
+    }
 
-        if (otherConnector != null && otherConnector != this)
+    private void Update()
+    {
+        if (PDM.dragging == true) // getting bool from PipeDragMechanic script
         {
-            float dist = Vector2.Distance(transform.position, other.transform.position);
-            if(dist < snapDistance && connectedTo == null && otherConnector.connectedTo == null) // only able to connect to others if everything is null and  within distance
-            {
-                SnapTo(otherConnector); // conncect to other connector
-            }
+            onPipeBar = false;
+        }
 
+        if(onPipeBar == false && PDM.dragging == false) // if pipe is getting dragged
+        {
+            SnapToNearestTile(); //snap the pipe to the nearest tile
         }
     }
-    void SnapTo(PipeConnectors other)
+
+    void SnapToNearestTile()
     {
-        Transform pipe = transform.parent;
-        Vector3 offset = transform.position - pipe.position;
+        GameObject closestTile = null; //store the closest tile we find 
+        float closestDistance = Mathf.Infinity; // Start with a very large number so any real distance is smaller
 
-        pipe.position = other.transform.position - offset;
 
-        connectedTo = other;
-        //other.connectedTo = this;
+        foreach (GameObject tile in tiles) // loop through every tile in the scene
+        {
+            float dist = Vector2.Distance(transform.position, tile.transform.position); // calculate the distance between the pipeand this tile
+
+            if(dist < snapDistance) // check if this tile is within snapping distance
+            {
+                //store this tile as the closest one
+                closestDistance = dist;
+                closestTile = tile;
+            }
+        }
+
+        // Snap only if close enough
+        if (closestTile != null && closestDistance < snapDistance) 
+        {
+            transform.position = closestTile.transform.position; // snap pipe into tiles exact position 
+        }
     }
+
 }
