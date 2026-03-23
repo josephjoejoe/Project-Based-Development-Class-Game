@@ -1,3 +1,4 @@
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class PipeConnectors : MonoBehaviour
@@ -8,22 +9,31 @@ public class PipeConnectors : MonoBehaviour
 
     public bool onPipeBar = true; // check if the pipe is on the pipe bar
 
+    public Vector3 startPosition; // store start position
+    public GameObject pipeBar; // store pipeBar location
+
     private void Start()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile"); // find gameobjects with Tile tag
         PDM = GetComponent<PipeDragMechanic>();
+        startPosition = transform.position; //Store the position the tool is at
     }
 
     private void Update()
     {
         if (PDM.dragging == true) // getting bool from PipeDragMechanic script
         {
-            onPipeBar = false;
+            onPipeBar = false; 
         }
 
         if(onPipeBar == false && PDM.dragging == false) // if pipe is getting dragged
         {
             SnapToNearestTile(); //snap the pipe to the nearest tile
+        }
+
+        if (Input.GetMouseButtonDown(1)) // press right click
+        {
+            BringBackToPipeBar(); // send pipe back to pipe bar 
         }
     }
 
@@ -49,6 +59,18 @@ public class PipeConnectors : MonoBehaviour
         if (closestTile != null && closestDistance < snapDistance) 
         {
             transform.position = closestTile.transform.position; // snap pipe into tiles exact position 
+        }
+    }
+
+    void BringBackToPipeBar()
+    {
+        Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //convert mouse positon to world position
+
+        Collider2D col = GetComponent<Collider2D>();
+        if(col == Physics2D.OverlapPoint(MousePos) && CompareTag("Pipe")) // check if we clicked on the pipe
+        {
+            transform.position = startPosition; //brings the tool back to its original spot
+            transform.SetParent(pipeBar.transform); //makes the tool go back to the toolbar
         }
     }
 

@@ -11,6 +11,7 @@ TagManager:
   - StoveAirVent1
   - ExitVent1
   - Tile
+  - Pipe
   layers:
   - Default
   - TransparentFX
