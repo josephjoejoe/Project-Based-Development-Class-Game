@@ -1,7 +1,7 @@
 using UnityEditor.UIElements;
 using UnityEngine;
 
-public class PipeConnectors : MonoBehaviour
+public class SnapPipeToGrid : MonoBehaviour
 {
     public GameObject[] tiles; // store gameobjects that have the tag Tile
     public float snapDistance = 1; // how close the pipe needs to be to snap
@@ -23,10 +23,10 @@ public class PipeConnectors : MonoBehaviour
     {
         if (PDM.dragging == true) // getting bool from PipeDragMechanic script
         {
-            onPipeBar = false; 
+            onPipeBar = false;
         }
 
-        if(onPipeBar == false && PDM.dragging == false) // if pipe is getting dragged
+        if (onPipeBar == false && PDM.dragging == false) // if pipe is getting dragged
         {
             SnapToNearestTile(); //snap the pipe to the nearest tile
         }
@@ -47,7 +47,7 @@ public class PipeConnectors : MonoBehaviour
         {
             float dist = Vector2.Distance(transform.position, tile.transform.position); // calculate the distance between the pipeand this tile
 
-            if(dist < snapDistance) // check if this tile is within snapping distance
+            if (dist < snapDistance) // check if this tile is within snapping distance
             {
                 //store this tile as the closest one
                 closestDistance = dist;
@@ -56,7 +56,7 @@ public class PipeConnectors : MonoBehaviour
         }
 
         // Snap only if close enough
-        if (closestTile != null && closestDistance < snapDistance) 
+        if (closestTile != null && closestDistance < snapDistance)
         {
             transform.position = closestTile.transform.position; // snap pipe into tiles exact position 
         }
@@ -67,7 +67,7 @@ public class PipeConnectors : MonoBehaviour
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //convert mouse positon to world position
 
         Collider2D col = GetComponent<Collider2D>();
-        if(col == Physics2D.OverlapPoint(MousePos) && CompareTag("Pipe")) // check if we clicked on the pipe
+        if (col == Physics2D.OverlapPoint(MousePos) && CompareTag("Pipe")) // check if we clicked on the pipe
         {
             transform.position = startPosition; //brings the tool back to its original spot
             transform.SetParent(pipeBar.transform); //makes the tool go back to the toolbar
