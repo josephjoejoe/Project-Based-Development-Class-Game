@@ -12,6 +12,7 @@ TagManager:
   - ExitVent1
   - Tile
   - Pipe
+  - Checks
   layers:
   - Default
   - TransparentFX
