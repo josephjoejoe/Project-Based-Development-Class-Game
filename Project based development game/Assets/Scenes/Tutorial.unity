@@ -148,8 +148,7 @@ Transform:
   m_LocalPosition: {x: -7.612237, y: 3.2391708, z: 0.09202099}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 228439564}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &48869275
@@ -161,9 +160,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 48869273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d37e9a95ad74176b80c798984aa20a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f6d159e8febe4a869259b9274c5f334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitVC: {fileID: 229663667}
+  stoveCheck: {fileID: 1788466955}
 --- !u!1 &108074804
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +987,7 @@ GameObject:
   - component: {fileID: 228439564}
   - component: {fileID: 228439563}
   m_Layer: 0
-  m_Name: GridManager
+  m_Name: Grid Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1023,11 +1024,11 @@ Transform:
   m_GameObject: {fileID: 228439562}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.78776264, y: -7.7191706, z: -10.041859}
+  m_LocalPosition: {x: -8.4, y: -4.4799995, z: -9.949838}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 48869274}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229663664
 GameObject:
@@ -1039,6 +1040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229663665}
   - component: {fileID: 229663666}
+  - component: {fileID: 229663667}
   m_Layer: 0
   m_Name: Exit Vent
   m_TagString: ExitVent
@@ -1107,6 +1109,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1016116, y: 5.0906873}
   m_EdgeRadius: 0
+--- !u!114 &229663667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229663664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6c9b165553e4c19915ead0dda8c1a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isConnected: 0
 --- !u!1 &288858496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4054,6 +4069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1568994115}
   - component: {fileID: 1568994116}
+  - component: {fileID: 1568994117}
   m_Layer: 0
   m_Name: Up Side Check
   m_TagString: Checks
@@ -4106,7 +4122,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4122,6 +4138,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.34492108}
   m_EdgeRadius: 0
+--- !u!114 &1568994117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568994114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8628ea5df11b948e1b5be37edc88cbf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftSideConnected: 0
 --- !u!1 &1638325788
 GameObject:
   m_ObjectHideFlags: 0
@@ -4287,6 +4316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1650846215}
   - component: {fileID: 1650846216}
+  - component: {fileID: 1650846217}
   m_Layer: 0
   m_Name: Down Side Check
   m_TagString: Checks
@@ -4339,7 +4369,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4355,6 +4385,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.37260073}
   m_EdgeRadius: 0
+--- !u!114 &1650846217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650846214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b40f128f520844c5ba9c744a03c7185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightSideConnected: 0
 --- !u!1 &1706828873
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,6 +4544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735443891}
   - component: {fileID: 1735443892}
+  - component: {fileID: 1735443893}
   m_Layer: 0
   m_Name: Stove Air Vent
   m_TagString: StoveAirVent
@@ -4569,6 +4613,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.916, y: 1.1113158}
   m_EdgeRadius: 0
+--- !u!114 &1735443893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735443890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac750abf86cc4097918b61a98c555f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isConnected: 0
 --- !u!1 &1788466952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,6 +4636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1788466953}
   - component: {fileID: 1788466954}
+  - component: {fileID: 1788466955}
   m_Layer: 0
   m_Name: Stove
   m_TagString: Stove
@@ -4635,7 +4693,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.063109875, y: 0.112974554}
+  m_Offset: {x: 0.01701048, y: 0.112974524}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4645,8 +4703,21 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2821252, y: 1.2778397}
+  m_Size: {x: 1.1218846, y: 1.2778397}
   m_EdgeRadius: 0
+--- !u!114 &1788466955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788466952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabc7626b68f048e39609023d57efd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isConnected: 0
 --- !u!1 &1861640410
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,6 +5242,7 @@ SceneRoots:
   - {fileID: 1646396199}
   - {fileID: 619394802}
   - {fileID: 519420032}
+  - {fileID: 228439564}
+  - {fileID: 48869274}
   - {fileID: 879526584}
   - {fileID: 1103124676}
-  - {fileID: 48869274}
