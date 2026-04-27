@@ -31,5 +31,6 @@ public class ExitVentCheck : MonoBehaviour
             isConnected = false;
         }
     }
-
+    //problem with the check scripts for appliances is that they are the same thing.
+     //I might even consider just removing trigger enter for appliances since I feel like only the pipes need to do the checking and the appliances are there to verify.
 }
