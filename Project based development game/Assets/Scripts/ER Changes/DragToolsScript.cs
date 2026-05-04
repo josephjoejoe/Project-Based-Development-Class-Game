@@ -3,9 +3,9 @@ using UnityEngine;
 public class DragToolsScript : MonoBehaviour
 {
   
-    bool dragging = false;
+    public bool dragging = false;
     public Vector3 offset;
-    Rigidbody2D RB;
+    public Rigidbody2D RB;
     public Vector3 startPosition;
     public GameObject canvas;
 
@@ -25,7 +25,7 @@ public class DragToolsScript : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    public virtual void OnMouseDown()
     {
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragging = true;

@@ -30,4 +30,21 @@ let me know in person or in discord.
         Todo: Next time I need to add Two Pipe Scripts, One will be in the toolbar and be the child to the parent dragging function. 
         The other sctript will be a prefab object script which will spawn from the first script and be responsible for the checking and any other behavior in the future.
 
+        4/27/26 - Added a PipeTool script that will be connected to the toolbar.
+        ToDo: Add a PipeField Script that will be linked to the prefab that will be spawned in the field.
+         Also, I will need to add a GameManager Script that holds the list and WinConditions  
+         4/29/26 - PipeField has a check script that checks what the colliders and should return a value as to whether they are connected or not
+         
+*/      
+
+
+/*
+        5/4/26 Changes and steps to finish the tutorial.
+        I made the pipe system work and collide, once I confirm the checks can work and set the two conditions 
+        for either an appliance collision or a pipe collision, I can get started on the game manager to first 
+        set up the tiles and then create the win condition.
+
+        All I need to do now is to add the specific bool and condition when the pipes touch an appliance and then for the end condition
+
+
 */
