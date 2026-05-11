@@ -16,8 +16,8 @@ public class PipeField : MonoBehaviour
     public void Start()
     {
         
-        Object.FindFirstObjectByType<GameManage>().AddPipe(gameObject);
-      
+       // Object.FindFirstObjectByType<GameManage>().AddPipe(gameObject);
+      GameManage.Instance.AddPipe(gameObject);
     }
     public void OnTriggerEnter2D(Collider2D other)
     {

@@ -6,6 +6,8 @@ public class ExitCon : MonoBehaviour
 {
     public float CD = 1;
     public bool EndCD = false;
+
+    public bool fix = false;
     // Update is called once per frame
     void Update()
     {
@@ -34,12 +36,21 @@ public class ExitCon : MonoBehaviour
     {
         if(GameManage.Instance.EndCheck())
         {
-
+            SceneManager.LoadScene(3);  
             Debug.Log("Winner");
         }
         else
         {
             Debug.Log("Bruh");
         }
+    }
+
+    public void BadTrigger()
+    {
+        
+    }
+    public void TriggerFix()
+    {
+        
     }
 }

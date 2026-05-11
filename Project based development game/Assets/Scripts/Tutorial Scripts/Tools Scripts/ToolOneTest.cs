@@ -10,13 +10,15 @@ public class ToolOneTest : MonoBehaviour
     public GameObject goodResult;
     public GameObject badResult;
 
+    public GameObject ExitVent;
+
     public float testTimer = 0;
     public float resetTimer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        ExitCon EC = ExitVent.GetComponent<ExitCon>();
     }
 
     // Update is called once per frame
@@ -42,6 +44,11 @@ public class ToolOneTest : MonoBehaviour
         if (exitVent == true && testTimer > 3)
         {
             BadTestResults();
+            ExitCon EC = ExitVent.GetComponent<ExitCon>();
+            if(EC != null)
+            {
+            EC.BadTrigger();
+            }
         }
 
         if(stove == false || (stoveAirVent == false) || (exitVent == false) && gotResults == true) // this helps the results show longer after you drag the tool away from the appiance
