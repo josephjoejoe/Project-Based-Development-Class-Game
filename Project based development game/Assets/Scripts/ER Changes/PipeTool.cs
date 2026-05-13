@@ -11,9 +11,14 @@ public class PipeTool : DragToolsScript
 
     public float snapDistance = 1;
 
+    public AudioSource ptool;
+
+    public AudioClip tpickup;
+
     
     public override void OnMouseUp()
     {
+     
         SnapToNearestTile();
         trans.x = transform.position.x;
         trans.y = transform.position.y;
@@ -23,6 +28,11 @@ public class PipeTool : DragToolsScript
         transform.position = startPosition; 
         dragging = false;
 
+    }
+    public override void OnMouseDown()
+    {
+        base.OnMouseDown();
+        ptool.PlayOneShot(tpickup);
     }
 
      void SnapToNearestTile()

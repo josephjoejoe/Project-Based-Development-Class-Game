@@ -11,6 +11,7 @@ public class ToolOneTest : MonoBehaviour
     public GameObject badResult;
 
     public GameObject ExitVent;
+    public AudioSource wave;
 
     public float testTimer = 0;
     public float resetTimer = 0;
@@ -19,6 +20,7 @@ public class ToolOneTest : MonoBehaviour
     void Start()
     {
         ExitCon EC = ExitVent.GetComponent<ExitCon>();
+        wave = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,8 @@ public class ToolOneTest : MonoBehaviour
         if(stove == true || (stoveAirVent == true) || (exitVent == true)) // the tool starts to test the appliance
         {
             testTimer += Time.deltaTime;
+            GameManage.Instance.ChangeInit("Check");
+            
         }
         else
         {
@@ -68,6 +72,7 @@ public class ToolOneTest : MonoBehaviour
         if (collision.gameObject.tag.Equals("Stove")) // checks to see if the tool on the stove
         {
             stove = true;
+            wave.Play();
         }
         if (collision.gameObject.tag.Equals("StoveAirVent"))
         {
@@ -99,6 +104,8 @@ public class ToolOneTest : MonoBehaviour
     {
         goodResult.SetActive(true);
         gotResults = true;
+        GameManage.Instance.ChangeInit("Done");
+        wave.Stop();
     }
     public void BadTestResults() // will make the result appear as bad
     {

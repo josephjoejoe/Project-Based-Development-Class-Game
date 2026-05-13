@@ -1,16 +1,19 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class RatScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public TextMeshPro Speaktext;
 
-    // Update is called once per frame
-    void Update()
+    public void Awake()
     {
-        
+        Speaktext = GetComponentInChildren<TextMeshPro>();
     }
+    
+    public void ChangeText(String Speech)
+    {
+        Speaktext.text = Speech;
+    }
+   
 }

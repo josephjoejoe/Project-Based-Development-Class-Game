@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class GameManage : MonoBehaviour
@@ -20,7 +21,12 @@ public class GameManage : MonoBehaviour
     public GameObject Pipebars;
     public GameObject RatPre;
     public GameObject RatPost;
- 
+    public GameObject Location;
+    
+    public GameObject WinButt;
+
+    public AudioSource pop; 
+    public AudioClip bub;
     private void Awake()
     {
        if(Instance != null && Instance != this)
@@ -36,7 +42,8 @@ public class GameManage : MonoBehaviour
     public void Start()
     {
         RatPost = Instantiate(RatPre);
-    }
+        pop = GetComponent<AudioSource>();
+    }   
     public void Update()
     {
          if(Input.GetMouseButtonDown(1))
@@ -99,10 +106,65 @@ public class GameManage : MonoBehaviour
 
     public void NP()
     {
+        ChangeInit("Next");
         Tool.SetActive(false);
         ToolBar.SetActive(false);
         Pipes.SetActive(true);
         Pipebars.SetActive(true);
     Destroy(NextPhase);
+    }
+
+    public void WinProc()
+    {
+        ChangeInit("Win");
+        WinButt.SetActive(true);   
+    }
+
+    public void BackToLobby()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void bubble()
+    {
+        pop.PlayOneShot(bub);
+    }
+    public void ChangeInit(string step)
+    {
+        RatScript rat = RatPost.GetComponent<RatScript>();
+        switch(step)
+        {
+            case "Check":
+                {
+                    if(rat!= null){
+                    rat.ChangeText("This Stove says it's not feeling too well. We will see if that is the case.");}
+                    break;
+                }
+            case "Done":
+                {
+                    if(rat!= null)
+                    {
+                        rat.ChangeText("It seems that the Stove is doing fine! Time to get this hooked onto the exit vent. Press the Next Phase button on the bottom right");
+                    }
+                    break;
+                }
+            case"Next":
+                {
+                    if(rat != null)
+                    {
+                        rat.ChangeText("Now that we are laying down the pipes. Drag the pipes from the top left bar to the living space so that the exit vent and Stove connects. Make sure the pipes are connecting too!");
+                    }
+                    break;
+                }
+            case "Win":
+
+                {
+                    if(rat != null)
+                    {
+                        rat.ChangeText("Congrats, now we can move to more houses with more problems");
+                    }
+                    break;
+                }
+        }
     }
 }

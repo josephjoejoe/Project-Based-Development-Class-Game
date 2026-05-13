@@ -10,6 +10,9 @@ public class PipeField : MonoBehaviour
     
     public bool LeftCon;
     public bool RightCon;
+
+    public AudioSource Pin;
+    public AudioClip place;
     
 
     
@@ -18,6 +21,7 @@ public class PipeField : MonoBehaviour
         
        // Object.FindFirstObjectByType<GameManage>().AddPipe(gameObject);
       GameManage.Instance.AddPipe(gameObject);
+      Pin.PlayOneShot(place);
     }
     public void OnTriggerEnter2D(Collider2D other)
     {

@@ -6,6 +6,8 @@ public class ExitCon : MonoBehaviour
 {
     public float CD = 1;
     public bool EndCD = false;
+    public SpriteRenderer Block;
+    public float opac = 0;
 
     public bool fix = false;
     // Update is called once per frame
@@ -14,6 +16,7 @@ public class ExitCon : MonoBehaviour
         if(EndCD)
         {
             CD -= Time.deltaTime;
+            opac += (Time.deltaTime/2);
         }
         if(CD <= 0.01f)
         {
@@ -21,6 +24,7 @@ public class ExitCon : MonoBehaviour
             CD = 1;
             EndCD = false;
         }
+        Block.color = new Color(0.4f,0.4f,0.4f,opac);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +32,7 @@ public class ExitCon : MonoBehaviour
         if(other.CompareTag("Pipe"))
         {
             EndCD = true;
-            EndScenario();
+            //EndScenario();
         }
     }
     
@@ -36,13 +40,9 @@ public class ExitCon : MonoBehaviour
     {
         if(GameManage.Instance.EndCheck())
         {
-            SceneManager.LoadScene(3);  
-            Debug.Log("Winner");
+            GameManage.Instance.WinProc();
         }
-        else
-        {
-            Debug.Log("Bruh");
-        }
+       
     }
 
     public void BadTrigger()
